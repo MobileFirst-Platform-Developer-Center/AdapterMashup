@@ -1,13 +1,13 @@
 IBM MobileFirst Platform Foundation
 ===
-### Sample Name
-
+### Adapter Mashup
+A hybrid sample using both HTTP and SQL adapters.
 
 ### Usage
-Follow the instructions in the tutorials listed below.
+Follow the instructions in the tutorial(s) listed below.
 
 ### Tutorials
-
+https://developer.ibm.com/mobilefirstplatform/documentation/getting-started-7-1/foundation/server-side-development-category/advanced-adapter-usage-mashup/
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 7.1
