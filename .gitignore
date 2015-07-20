@@ -52,6 +52,8 @@ bin
 # Injected by the command-line tools
 derby.log
 
+/*.backup.zip
+
 #
 # END mfp-gitignore rules
 #
