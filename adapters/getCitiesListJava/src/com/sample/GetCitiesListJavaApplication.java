@@ -16,6 +16,7 @@ public class GetCitiesListJavaApplication extends MFPJAXRSApplication{
 	
 	@Override
 	protected void init() throws Exception {
+		GetCitiesListJavaResource.init();
 		logger.info("Adapter initialized!");
 	}
 	

@@ -8,6 +8,7 @@
 package com.sample;
 
 import java.util.logging.Logger;
+
 import com.worklight.wink.extensions.MFPJAXRSApplication;
 
 public class GetCitiesListJavaToJsApplication extends MFPJAXRSApplication{
@@ -16,6 +17,7 @@ public class GetCitiesListJavaToJsApplication extends MFPJAXRSApplication{
 	
 	@Override
 	protected void init() throws Exception {
+		GetCitiesListJavaToJsResource.init();
 		logger.info("Adapter initialized!");
 	}
 	

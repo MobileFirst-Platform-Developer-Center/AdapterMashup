@@ -7,40 +7,34 @@
 
 package com.sample;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
 
-import javax.ws.rs.FormParam;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
 
 import org.apache.http.client.methods.HttpUriRequest;
 
 import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
-import com.mysql.jdbc.Statement;
 import com.worklight.adapters.rest.api.MFPServerOAuthException;
-import com.worklight.adapters.rest.api.MFPServerOperationException;
 import com.worklight.adapters.rest.api.WLServerAPI;
 import com.worklight.adapters.rest.api.WLServerAPIProvider;
 
 @Path("/")
 public class GetCitiesListJavaToJsResource {
 	Connection conn = null;
+	static DataSource ds = null;
+	static Context ctx = null;
 	/*
 	 * For more info on JAX-RS see https://jsr311.java.net/nonav/releases/1.1/index.html
 	 */
@@ -51,13 +45,18 @@ public class GetCitiesListJavaToJsResource {
     //Define the server api to be able to perform server operations
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
     
+    public static void init() throws NamingException {
+        ctx = new InitialContext();
+        ds = (DataSource)ctx.lookup("jdbc/mobilefirst_training");        
+    }
+    
     @GET
 	@Path("/getCitiesList_JavaToJs")
 	public String JavaToJs() throws SQLException, MFPServerOAuthException, IOException{
     	JSONArray jsonArr = new JSONArray();
 		
-		Statement stmt = (Statement) getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select city, identifier, summary from weather");
+    	PreparedStatement getAllCities = getSQLConnection().prepareStatement("select city, identifier, summary from weather");
+		ResultSet rs = getAllCities.executeQuery();
 		while (rs.next()) {
 			/* Calling a JavaScript HTTP adapter procedure */
 			HttpUriRequest req = api.getAdaptersAPI().createJavascriptAdapterRequest("getCityWeatherJS", "getYahooWeather", URLEncoder.encode(rs.getString("identifier"), "UTF-8"));
@@ -85,9 +84,9 @@ public class GetCitiesListJavaToJsResource {
 	}
     
     /* Connect to MySQL DB */
-	private Connection getConnection(){
+	private Connection getSQLConnection(){
 		try {
-		    conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mobilefirst_training?user=root&password=");
+			conn = ds.getConnection();
 		    		
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());

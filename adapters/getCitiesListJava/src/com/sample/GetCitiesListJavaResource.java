@@ -7,51 +7,35 @@
 
 package com.sample;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Logger;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.FormParam;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.wink.json4j.utils.XML;
-import org.xml.sax.SAXException;
 
 import com.ibm.json.java.JSONArray;
 import com.ibm.json.java.JSONObject;
-import com.mysql.jdbc.Statement;
 import com.worklight.adapters.rest.api.MFPServerOAuthException;
-import com.worklight.adapters.rest.api.MFPServerOperationException;
 import com.worklight.adapters.rest.api.WLServerAPI;
 import com.worklight.adapters.rest.api.WLServerAPIProvider;
 
 @Path("/")
 public class GetCitiesListJavaResource {
 	Connection conn = null;
+	static DataSource ds = null;
+	static Context ctx = null;
 	/*
 	 * For more info on JAX-RS see https://jsr311.java.net/nonav/releases/1.1/index.html
 	 */
@@ -61,6 +45,11 @@ public class GetCitiesListJavaResource {
 
     //Define the server api to be able to perform server operations
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
+    
+    public static void init() throws NamingException {
+        ctx = new InitialContext();
+        ds = (DataSource)ctx.lookup("jdbc/mobilefirst_training");       
+    }
 
     @GET
 	@Path("/getCitiesList_JavaToJava")
@@ -68,8 +57,8 @@ public class GetCitiesListJavaResource {
 		JSONArray jsonArr = new JSONArray();
 		String getWeatherInfoProcedureURL = null;
 		
-		Statement stmt = (Statement) getConnection().createStatement();
-		ResultSet rs = stmt.executeQuery("select city, identifier, summary from weather");
+		PreparedStatement getAllCities = getSQLConnection().prepareStatement("select city, identifier, summary from weather");
+		ResultSet rs = getAllCities.executeQuery();
 		while (rs.next()) {
 			/* Calling another Java adapter procedure to get the weather of the current city */
 			getWeatherInfoProcedureURL = "/getCityWeatherJava?cityId="+ URLEncoder.encode(rs.getString("identifier"), "UTF-8");
@@ -98,9 +87,10 @@ public class GetCitiesListJavaResource {
 	}
 
     /* Connect to MySQL DB */
-	private Connection getConnection(){
+	private Connection getSQLConnection(){
 		try {
-		    conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mobilefirst_training?user=root&password=");
+		    //conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mobilefirst_training?user=root&password=");
+			conn = ds.getConnection();
 		    		
 		} catch (SQLException ex) {
 		    System.out.println("SQLException: " + ex.getMessage());
