@@ -2,6 +2,9 @@
     <wb-module deploy-name="AdapterMashup">
         <wb-resource deploy-path="/" source-path="/apps/AdapterMashup/common"/>
         <wb-resource deploy-path="/" source-path="/apps/AdapterMashup/iphone"/>
+        <wb-resource deploy-path="/" source-path="/adapters/getCitiesListJavaToJs/src"/>
+        <wb-resource deploy-path="/" source-path="/adapters/getCitiesListJava/src"/>
+        <wb-resource deploy-path="/" source-path="/adapters/getCityWeatherJava/src"/>
         <property name="context-root" value="AdapterMashup"/>
     </wb-module>
 </project-modules>

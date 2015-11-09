@@ -28,12 +28,18 @@ limitations under the License.
    	</head>
    	<body style="display: none;">
 		<div id="header">
-			<h1>CityWeather</h1>
+			<h1 id="AppTitle">CityWeather <span id="subTitle"></span></h1>
 		</div>			
 		<div id="wrapper">
+			<h4 id="subTitle"></h4>
 			<label for="citiesList">Select city: </label>
 			<select id="citiesList"></select>
 			<div id="info"></div>
+			<div align="center">
+				<button id="JsToJsButton" class="AdapterTypeButton" onclick="getCitiesList_JsToJs();">JS adapter -> JS adapter</button>
+				<button id="JavaToJsButton" class="AdapterTypeButton" onclick="getCitiesList_JavaToJs();">Java adapter -> JS adapter</button>
+				<button id="JavaToJavaButton" class="AdapterTypeButton" onclick="getCitiesList_JavaToJava();">Java adapter -> Java adapter</button>
+			</div>
 		</div>			
 			
    		<script src="js/initOptions.js"></script>

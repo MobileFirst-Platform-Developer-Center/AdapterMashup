@@ -38,6 +38,11 @@ h1 {
 	width: 100%;
 }
 
+#subTitle {
+	color: #CCCCCC;
+	font-size: 14px;
+}
+
 #wrapper {
 	width: 90%;
 	margin: auto;
@@ -52,11 +57,40 @@ h1 {
 
 #wrapper #info {
 	margin: 15px auto;
-	padding: 5px;
-	border: 1px solid lightgrey;
+	padding: 8px;
+	border: 4px solid lightgrey;
 	text-align: center;
 	text-shadow: 2px 2px 5px #1D4D90;
 	font-size: 14px;
+}
+
+.AdapterTypeButton {
+	margin: 5px;
+	background-color: #1D4D90;
+	color: white;
+	border: none;
+	font-size: 14px;
+	width: 240px;
+	height:40px;
+	-moz-border-radius: 8px;
+  	-webkit-border-radius: 8px;
+}
+
+.AdapterTypeButtonSelected {
+	margin: 5px;
+	background-color: #FFFFFF;
+	color: #1D4D90;
+	border: 2px solid #1D4D90;
+	font-size: 14px;
+	font-weight: bold;
+	width: 240px;
+	height:40px;
+	-moz-border-radius: 8px;
+  	-webkit-border-radius: 8px;
+}
+
+button:focus {
+    outline: none;
 }
 
 

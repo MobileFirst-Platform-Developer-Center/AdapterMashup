@@ -1,22 +1,22 @@
-#Mon Jul 20 13:38:34 IDT 2015
-base.iphone=2678403229
-base.android=4075754651
-jsonstore.windowsphone8=3392042448
+#Tue Oct 27 14:48:03 IST 2015
+base.iphone=1038353722
+base.android=188543705
+jsonstore.windowsphone8=1864982580
 AdapterMashup.iphone.native=1403769466
-common.android=3998981046
-fipshttp.android=3517017756
-wl_version=7.1.0.00.20150720-0602
+common.android=2602476710
+fipshttp.android=2225966711
+wl_version=7.1.0.00.20151023-1441
 eclipse.preferences.version=1
-base.windowsphone8=2993049421
-jsonstore.android=2033967206
+base.windowsphone8=4237699421
+jsonstore.android=1718801641
 analytics.ipad=2554529831
 encoding//apps/AdapterMashup/common/index.html=ISO-8859-1
-fipshttp.iphone=2487189175
-fipshttp.ipad=2487189175
+fipshttp.iphone=761882626
+fipshttp.ipad=761882626
 wl_compatible_version=
 encoding//apps/AdapterMashup/common/css/main.css=UTF-8
 AdapterMashup.android.native=4190508318
-base.ipad=2678403229
+base.ipad=1038353722
 encoding//apps/AdapterMashup/common/js/main.js=UTF-8
 AdapterMashup.ipad.native=1403769466
 encoding//apps/AdapterMashup/iphone/css/main.css=UTF-8
