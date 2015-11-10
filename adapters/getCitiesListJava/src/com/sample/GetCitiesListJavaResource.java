@@ -89,7 +89,6 @@ public class GetCitiesListJavaResource {
     /* Connect to MySQL DB */
 	private Connection getSQLConnection(){
 		try {
-		    //conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mobilefirst_training?user=root&password=");
 			conn = ds.getConnection();
 		    		
 		} catch (SQLException ex) {
