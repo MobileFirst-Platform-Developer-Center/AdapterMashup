@@ -16,25 +16,17 @@
 
 package com.sample;
 
-import java.util.List;
-import java.util.logging.Logger;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -46,11 +38,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.wink.json4j.utils.XML;
 import org.xml.sax.SAXException;
-
-import com.ibm.json.java.JSONObject;
-import com.worklight.adapters.rest.api.MFPServerOperationException;
-import com.worklight.adapters.rest.api.WLServerAPI;
-import com.worklight.adapters.rest.api.WLServerAPIProvider;
 
 @Path("/")
 public class GetCityWeatherJavaResource {
