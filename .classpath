@@ -8,6 +8,5 @@
 	<classpathentry kind="src" output="adapters/getCitiesListJavaToJs/bin" path="adapters/getCitiesListJavaToJs/src"/>
 	<classpathentry kind="src" output="adapters/getCitiesListJava/bin" path="adapters/getCitiesListJava/src"/>
 	<classpathentry kind="src" output="adapters/getCityWeatherJava/bin" path="adapters/getCityWeatherJava/src"/>
-	<classpathentry kind="lib" path="server/lib/mysql-connector-java-5.1.6.jar" rootpath="/"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
